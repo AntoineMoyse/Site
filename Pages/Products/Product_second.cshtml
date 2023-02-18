@@ -1,0 +1,51 @@
+﻿@page
+@model Site.Pages.Products.Product_secondModel
+@{
+    ViewData["Title"] = "Produit_2";
+}
+
+<div class="text-center" style="margin-top:110px;">
+    <h1 class="display-4">PRESENTAION DE NOS PRODUIT</h1>
+    <h3 style="font-size: 2rem;">Découvrez le moteur pour vélo électrique BROSE</h3>
+    <img src="~/images/Logo/brose.png" style="max-width:40%; margin-top:20px; margin-bottom:10px;">
+</div>
+
+@foreach (var product in Model.Produits) //Le "Model" renvoie au model de la PAGE soit Product_first.cshtml.cs et "Produits" c'est la liste présente dans le modèle
+{
+    @if(product.Categorie.Name != "Nautique")
+    {
+        <div class="container-fluid" style="margin-top: 20px">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-horizontal">
+                            <div class="d-flex" style="width: 40%; height: auto;">
+                                @if(product.Image != null)
+                                {
+                                    var base64 = Convert.ToBase64String(product.Image);
+                                    var image = String.Format("data:image/png;base64,{0}", base64);
+                                    <img src="@image" alt="" class="img-fluid">
+                                }
+                                else
+                                {
+                                    <img src="~/images/no-image-found.jpg" class="img-fluid">
+                                }
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">@product.Name
+                                    <span style="float: right; font-size: 20px">
+                                        @product.Price €
+                                    </span>
+                                </h4>
+                                <p class="card-text">@product.DescriptionCourte</p>
+                                <div>
+                                    <a class="btn btn-primary" style="float: right;" asp-page="./ProductView" asp-route-id="@product.Id" title="Vers @product.Name">Ajouter au panier</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

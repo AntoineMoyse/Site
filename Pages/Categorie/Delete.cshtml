@@ -1,0 +1,36 @@
+@page
+@model Site.Pages_Categorie.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 style="margin-top:110px;">Supprimer</h1>
+
+<h3>Etes vous sûr de vouloir supprimer cette catégorie ?</h3>
+<h6 style="text-align: center; font-size: 15px; color: red;">Attention ! La suppression d'une catégorie supprime aussi tout les produits associés.
+    Vérifiez bien qu'aucun produit ne possède la catégorie à supprimer avant de la supprimer.</h6>
+<div>
+    <h4>Categorie</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Description)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Category.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Retour à la liste</a>
+    </form>
+</div>

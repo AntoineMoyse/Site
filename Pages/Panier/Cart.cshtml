@@ -1,0 +1,86 @@
+﻿@page
+@model Site.Pages.Panier.CartModel
+@using System.Globalization
+@{
+}
+
+<div class="checkoutForm" style="margin-top:110px;">
+    <div>
+        <h2>Votre panier
+            <br />Voici les produits présents dans votre panier.
+        </h2>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quantité sélectionnée</th>
+                <th></th>
+                <th>Produit</th>
+                <th class="text-right">Prix</th>
+                <th class="text-right">Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.Cart)
+            {
+                <tr>
+                    @using (Html.BeginForm(""))
+                    {
+                    <td class="text-center">
+                        <div>
+                            <input type="number" name="amount" id="replyNumber" value="@line.Quantite" min="1" step="1" data-bind="value:replyNumber" />
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <button type="submit" class="btn btn-warning" asp-page-handler="Update"
+                        asp-route-id="@line.Produit.Id" asp-route-amout="replyNumber">Mettre à jour</button>
+                    </td>
+                    }
+                    <td class="text-left"><a class="btn btn-info" asp-page="../Products/ProductView"
+                        asp-route-id="@line.Produit.Id">@line.Produit.Name</a></td>
+                    <td class="text-right">@*@line.Produit.Price.ToString("c",CultureInfo.CreateSpecificCulture("fr-FR"))*@</td>
+                    <td class="text-right">@*
+                        @((line.Quantite * line.Produit.Price).ToString("c",CultureInfo.CreateSpecificCulture("fr-FR")))*@
+                    </td>
+                    <td class="text-center"><a class="btn btn-danger" asp-page-handler="Remove"
+                        asp-route-produitId="@line.Produit.Id">Supprimer</a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total : </td>
+                <td class="text-right">
+                    @*(Model.CartTotal.ToString("c",CultureInfo.CreateSpecificCulture("fr-FR")))*@
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    @if (ViewBag.InvalidAmountText != null)
+    {
+        <div>
+            <p class="invalidAmount">@ViewBag.InvalidAmountText</p>
+        </div>
+    }
+    <div>
+        <a class="btn btn-dark" style="margin-top:10px; float:left;" href='javascript:history.go(-1)'>Retour</a>
+
+        @if (Model.Cart.Count() != 0)
+        {
+            @*
+            <div class="action" style="margin-top:10px; float:right;">
+                <div class="btn-group ">
+                    <a class="btn btn-primary" asp-page="../Order/Commande">Confirmer mon choix</a>
+                </div>
+            </div>
+            *@
+        }
+        else
+        {
+            <div style="margin-top:14px; float:right;">
+                <p>Votre panier est vide.</p>
+            </div>
+        }
+    </div>
+</div>

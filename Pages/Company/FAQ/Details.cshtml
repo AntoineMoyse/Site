@@ -1,0 +1,31 @@
+@page
+@model Site.Pages_Question.DetailsModel
+
+@{
+    ViewData["Title"] = "Détails";
+}
+
+<h1 style="margin-top:110px;">Détails</h1>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.question)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.question)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.reponse)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.reponse)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Question.Id">Editer</a> |
+    <a asp-page="./Index">Retour à la liste</a>
+</div>

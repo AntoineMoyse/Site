@@ -1,0 +1,157 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+.navbar-dark {
+    background-color: #01579B !important; /* Blue background color */
+    position: fixed; /* Make it stick/fixed */
+    top: 0; /* Stay on top */
+    width: 100%; /* Full width */
+    transition: top 0.5s; /* Transition effect when sliding down (and up) */
+    z-index: 500;
+}
+
+nav .navbar-nav li a{
+  font-weight: bold;
+  padding-right:20px;
+}
+
+.nav-up {
+  top: -100px;
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: white;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-color: white;
+}
+
+table.Details {
+  table-layout: fixed;
+  width: 100%;  
+}
+
+div.c-wrapper{
+  width: 100%; 
+  margin: auto;
+  margin-top: 120px;
+}
+
+.carousel-inner > .carousel-item > img, 
+.carousel-inner > .carousel-item > a > img{
+  width: 100%; /* use this, or not */
+  margin: auto;
+}
+
+.carousel-content{
+  position: absolute;
+  bottom: 500%;
+  left: 19%;
+  z-index: 200;
+  color:white;
+  font-size: 25px;
+  font-weight: bold;
+  outline:white;
+}
+
+.card .card-body {
+  height: auto;
+  width: 60%;
+  font-family: 'Nunito', sans-serif;
+  background: #fbfafd;
+}
+
+.card .card-img-top {
+  display: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.FAQ > h5{
+  margin-top:25px;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #135597;
+    border-color: #145596;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  display:block;
+  position: absolute;
+  bottom: -75px;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}

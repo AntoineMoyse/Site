@@ -1,0 +1,109 @@
+﻿@page
+@using System.Globalization
+@model Site.Areas.Identity.Pages.Account.Manage.CommandeDetailsModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<h5 style="margin-top: 120px;">Détails de la commande</h5>
+@if (Model.Client.Id != Model.Commande.clientId)
+{
+    <h6>La commande que vous essayez d'accéder à été faite par un autre compte.</h6>
+}
+else
+{
+    <h6>Voici les détails de votre commande numéro : @Model.Commande.Id</h6>
+    <table class="Details table-bordered">
+        <thead>
+            <tr>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Date de commande</th>
+                <th>Total de la commande</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Commande.Adresse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Commande.CodePostal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Commande.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Commande.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Commande.CommandePlaced)
+                </td>
+                <td>
+                    @(Model.Commande.CommandeTotal.ToString("c",CultureInfo.CreateSpecificCulture("fr-FR")))
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table class="Details table-bordered" style="margin-top: 50px;">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix à l'unité</th>
+                <th>Total du produit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.Details)
+            {
+                <tr>
+                    <td>
+                        @foreach (var produit in Model.Products)
+                        {
+                            @if (produit.Id == detail.ProductId)
+                            {
+                                <div>
+                                    <a asp-page="./CommandeProduitView" asp-route-id="@produit.Id">@produit.Name</a>
+                                </div>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <div>@detail.Quantite</div>
+                    </td>
+                    <td>
+                        <div>@(detail.Price.ToString("c",CultureInfo.CreateSpecificCulture("fr-FR")))</div>
+                    </td>
+                    <td>
+                        <div>@((detail.Quantite * detail.Price).ToString("c",CultureInfo.CreateSpecificCulture("fr-FR")))
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <div>Frais de livraison</div>
+                </td>
+                <td>
+                    <div>1</div>
+                </td>
+                <td>
+                    <div>@Model.EveryLivraison.Prix</div>
+                </td>
+                <td>
+                    <div>@Model.EveryLivraison.Prix</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <a class="btn btn-primary" href='javascript:history.go(-1)' style="margin-top: 15px;">Retour</a>
+        <form asp-page-handler="PrintPDF" asp-route-id="@Model.Commande.Id" method="post"
+        style="margin-top: 15px; float: right;">
+            <button class="btn btn-primary">Génerer une facture</button>
+        </form>
+    </div>
+}

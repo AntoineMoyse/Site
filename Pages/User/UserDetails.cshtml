@@ -1,0 +1,45 @@
+﻿@page
+@model Site.Pages_User.UserDetailsModel
+@{
+}
+
+<h5 style="margin-top: 120px;">Détails du client</h5>
+
+<h6>Voici les détails du client numéro : @Model.Client.Id</h6>
+<table class="Details table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Email vérifié</th>
+            <th>Numéro tel</th>
+            <th>Numéro tel confirmé</th>
+            <th>Facteur double authentification</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Client.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Client.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Client.EmailConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Client.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Client.PhoneNumberConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Client.TwoFactorEnabled)
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <a class="btn btn-primary" href='javascript:history.go(-1)' style="margin-top: 15px;">Retour</a>
+</div>

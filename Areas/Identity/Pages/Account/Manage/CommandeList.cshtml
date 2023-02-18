@@ -1,0 +1,59 @@
+﻿@page
+@using System.Globalization
+@model CommandeListModel
+@{
+}
+
+@if (Model.Client.Commandes == null)
+{
+    <h5>Aucune commande n'a été passée</h5>
+}
+else
+{
+    <h5>Bonjour, voici vos commandes passées</h5>
+    <table class="table table-stripped table-bordered">
+        <thead>
+            <tr>
+                <th>Numéro de commande</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Date de commande</th>
+                <th>Total de la commande</th>
+                <th>Etat de la commande</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var commande in Model.Client.Commandes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.CodePostal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.CommandePlaced)
+                    </td>
+                    <td>
+                        @(commande.CommandeTotal.ToString("c",CultureInfo.CreateSpecificCulture("fr-FR")))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.etat)
+                    </td>
+                    <td>
+                        <a asp-page="CommandeDetails" asp-route-id="@commande.Id">Détails</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

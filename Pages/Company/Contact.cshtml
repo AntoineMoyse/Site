@@ -1,0 +1,68 @@
+﻿@page
+@model Site.Pages.Company.ContactModel
+@{
+    ViewData["Title"] = "Contact";
+}
+<div class="container" style="margin-top:110px;">
+    <div class="text-center">
+        <h1 class="display-4">CONTACT ET DEVIS</h1>
+    </div>
+    <div style="center-align">
+        <h5 class="white-text">Mon Site</h5>
+        <p class="grey-text text-lighten-4 valign-wrapper">
+            Adresse
+        </p>
+        <p class="grey-text text-lighten-4 valign-wrapper">
+            Téléphone
+        </p>
+        <div style="display:inline-block;">
+            <a class="grey-text text-lighten-4 valign-wrapper" href="mailto:adresse@mail.com">
+                adresse@mail.com
+            </a>
+        </div>
+        <h3 style="margin-top:10px;" class="text-center">Formulaire de contact</h3>
+        <form method="post" class="row contact-form">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Mail"></label>
+                    <input asp-for="Mail" class="form-control" />
+                    <span asp-validation-for="Mail"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Company"></label>
+                    <input asp-for="Company" class="form-control" />
+                    <span asp-validation-for="Company"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="PhoneNbr"></label>
+                    <input asp-for="PhoneNbr" class="form-control" />
+                    <span asp-validation-for="PhoneNbr"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label asp-for="Body" class="col-5 col-form-label"></label>
+                    <textarea rows="4" asp-for="Body" class="form-control form-control-sm"></textarea>
+                    <span asp-validation-for="Body"></span>
+                </div>
+            </div>
+            <p class="actions mx-auto">
+                <button class="btn btn-primary">Envoyer</button>
+            </p>
+        </form>
+        <div style="margin-top:35px;">
+            <iframe src="https://www.google.com/maps/" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+    </div>
+</div>

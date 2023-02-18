@@ -1,0 +1,199 @@
+@model Site.Models.PDF.ModelTemplateFacture
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Invoice</title>
+
+    <style>
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .invoice-box table tr td:nth-child(2) {
+            text-align: right;
+        }
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="3">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="https://localhost:5001/images/Logo/Logo_simple.png"
+                                    style="width:100%; max-width:150px;">
+                            </td>
+                            <td>
+                                <b>Facture #</b>@Model.Commande.Id<br>
+                                <b>Livraison : </b>@Model.EveryLivraison.Name<br>
+                                <b>Commande enregistrée le </b> @Model.Commande.CommandePlaced.ToString("d")<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="3">
+                    <table>
+                        <tr>
+                            <td>
+                                Mon Site<br>
+                                Adresse<br>
+                                Adresse
+                            </td>
+                            <td>
+                                @Model.Commande.clientId.Substring(0,8).ToUpperInvariant()<br>
+                                @Model.Commande.Adresse<br>
+                                @Model.Commande.City, @Model.Commande.CodePostal
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Client
+                </td>
+                <td></td>
+                <td>
+                    Montant à payer
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                    ID du client : @Model.Commande.clientId.Substring(0,8).ToUpperInvariant()
+                </td>
+                <td></td>
+                <td>
+                    @Model.Commande.CommandeTotal €
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Produit
+                </td>
+
+                <td>
+                    Quantité
+                </td>
+
+                <td>
+                    Prix
+                </td>
+            </tr>
+            @foreach (var detail in Model.Details)
+            {
+                @if (Model.Commande.Id == detail.CommandeId)
+                {
+                    <tr class="item">
+                        @foreach (var produit in Model.Produits)
+                        {
+                            @if (produit.Id == detail.ProductId)
+                            {
+                                <td>
+                                    @produit.Name
+                                </td>
+
+                                <td>
+                                    @detail.Quantite
+                                </td>
+
+                                <td>
+                                    @produit.Price €
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+            <tr class="item">
+                <td>
+                    <div>Frais de livraison</div>
+                </td>
+                <td>
+                    <div>1</div>
+                </td>
+                <td>
+                    <div>@Model.EveryLivraison.Prix</div>
+                </td>
+            </tr>
+
+            <tr class="total">
+                <td>
+                    Total: @Model.Commande.CommandeTotal €
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

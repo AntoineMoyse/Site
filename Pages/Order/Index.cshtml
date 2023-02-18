@@ -1,0 +1,73 @@
+﻿@page
+@using System.Globalization
+@model Site.Pages_Commande.IndexModel
+@{
+}
+
+<h2 style="margin-top:110px;">Index</h2>
+
+
+@using (Html.BeginForm())
+{
+    <p>
+        <label asp-for="SelectOption">Option de recherche : </label>
+        <select id="SelectOption" name="SelectOption">
+            <option value="Id Commande">Id Commande</option>
+            <option value="Id Client">Id Client</option>
+            <option value="Adresse">Adresse</option>
+        </select>
+
+        @Html.Label("Search Text")
+        @Html.TextBox("SearchText")
+        <input asp-page-handler="Search" type="submit" value="Rechercher" class="btn btn-primary" />
+    </p>
+}
+
+@if (Model.commandelist == null)
+{
+    <h1>Aucun résultat... pour le moment</h1>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro de commande</th>
+                <th>Numéro client</th>
+                <th>Adresse</th>
+                <th>Date de commande</th>
+                <th>Total de la commande</th>
+                <th>Etat de la commande</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var commande in Model.commandelist)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.clientId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.Adresse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.CommandePlaced)
+                    </td>
+                    <td>
+                        @(commande.CommandeTotal.ToString("c",CultureInfo.CreateSpecificCulture("fr-FR")))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => commande.etat)
+                    </td>
+                    <td>
+                        <a asp-page="CommandeDetails" asp-route-id="@commande.Id">Détails</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

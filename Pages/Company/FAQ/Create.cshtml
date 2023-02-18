@@ -1,0 +1,43 @@
+@page
+@model Site.Pages_Question.CreateModel
+
+@{
+    ViewData["Title"] = "Créer une nouvelle question";
+}
+
+<h1 style="margin-top:110px;">Création Question</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label asp-for="Question.question" class="control-label"></label>
+                    <textarea rows="4" asp-for="Question.question" class="form-control"></textarea>
+                    <span asp-validation-for="Question.question" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label asp-for="Question.reponse" class="control-label"></label>
+                    <textarea rows="4" asp-for="Question.reponse" class="form-control"></textarea>
+                    <span asp-validation-for="Question.reponse" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

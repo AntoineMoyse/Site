@@ -1,0 +1,27 @@
+﻿@page
+@model GenerateRecoveryCodesModel
+@{
+    ViewData["Title"] = "Créer de nouveaux codes de récupération pour la double authentification";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4>@ViewData["Title"]</h4>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>Garder ces codes dans un lieu sûr.</strong>
+    </p>
+    <p>
+        Si vous perdez votre compte et que vous n'avez pas vos codes de récupération, vous n'aurez plus accès à votre compte.
+    </p>
+    <p>
+        Créer de nouveaux codes ne change pas la clé de double authentification. Si vous souhaitez la changer, vous devez
+         <a asp-page="./ResetAuthenticator">réinitialiser votre clé d'authentification.</a>
+    </p>
+</div>
+<div>
+    <form method="post" class="form-group">
+        <button class="btn btn-danger" type="submit">Créer Codes de Récupération</button>
+    </form>
+</div>

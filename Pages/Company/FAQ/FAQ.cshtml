@@ -1,0 +1,32 @@
+﻿@page
+@model Site.Pages.Company.FAQ.FAQModel
+@{
+}
+
+
+
+<h1 style="margin-top:110px;">Foire aux questions</h1>
+<div class="FAQ">
+    @{
+        int i = 0;
+    }
+    @foreach (var quest in Model.Questions)
+    {
+        <div class="card card-body">
+            <p>
+            <h5>@quest.question
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".collapse_@i"
+                style="float: right;">
+                    +
+                </button>
+            </h5>
+            </p>
+            <div class="collapse collapse_@i">
+                <div class="card card-body">
+                    @quest.reponse
+                </div>
+            </div>
+        </div>
+        i++;
+    }
+</div>

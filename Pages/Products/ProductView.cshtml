@@ -1,0 +1,37 @@
+﻿@page
+@model Site.Pages.Products.ProductViewModel
+@{
+}
+
+<h1 style="margin-top:110px;">@Model.Product.Name</h1>
+<div>
+    @if (Model.Product.Image != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Product.Image);
+        var image = String.Format("data:image/png;base64,{0}", base64);
+        <img src="@image" alt="" class="responsive-img" style="width:40%; text-align: left; margin-top: 30px;">
+    }
+    else
+    {
+        <img src="~/images/no-image-found.jpg" class="responsive-img" style="width:40%; text-align: left;">
+    }
+    <span style="width:50%; text-align:right; float: right;font-size: 20px; white-space: pre-line; margin-top: -40px; margin-bottom: 40px;">
+        Référence : @Model.Product.Id
+
+        Catégorie : @Model.Product.Categorie.Name
+
+
+        Description :
+        @Model.Product.Description
+
+
+        Prix : Demande de prix sur devis
+    </span>
+</div>
+<div align="center">
+    <a class="btn btn-primary btn-lg" style="width:100%" asp-page="/Panier/Cart" asp-page-handler="Add"
+        asp-route-id="@Model.Product.Id" asp-route-amount="1">Ajouter au panier</a>
+</div>
+<div>
+    <a class="btn btn-primary" href='javascript:history.go(-1)' style="margin-top: 15px;">Retour</a>
+</div>

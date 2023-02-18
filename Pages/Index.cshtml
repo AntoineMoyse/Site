@@ -1,0 +1,134 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="c-wrapper">
+    <div id="MyCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a asp-page="Products/Product_first">
+                    <img src="images/Carousel/pedalo_3.jpg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p class="carousel-content" style="color: inherit; margin-left: 50px;">Découvrez nos produits Nautiques</p>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a>
+                    <img src="images/Carousel/velo_3.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p class="carousel-content" style="color: inherit;">Découvrez nos produits de Terre et Montagne</p>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a asp-page="Company/Leman">
+                    <img src="images/24h du leman/Image_carrousel.png" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p class="carousel-content" style="color: inherit; margin-left: 50px;">Découvrez les 24 heures du Léman !</p>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a asp-page="Products/Product_first">
+                    <img src="images/Carousel/paddle_3.jpg" alt="Fourth slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p class="carousel-content" style="color: inherit; margin-left: 50px;">Découvrez nos produits Nautiques</p>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a>
+                    <img src="images/Carousel/velo_3.jpg" alt="Fifth slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p class="carousel-content" style="color: inherit;">Découvrez nos produits de Terre et Montagne</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#MyCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#MyCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<div class="container" style="margin-top:50px;">
+    <div class="text-center">
+        <h1 class="display-4">NOUS CONTACTER POUR UN DEVIS</h1>
+    </div>
+    <div style="center-align">
+        <h5 class="white-text">Mon Site</h5>
+        <p class="grey-text text-lighten-4 valign-wrapper">
+            Adresse
+        </p>
+        <p class="grey-text text-lighten-4 valign-wrapper">
+            Téléphone
+        </p>
+        <div style="display:inline-block;">
+            <a class="grey-text text-lighten-4 valign-wrapper" href="mailto:adresse@mail.com">
+                adresse@mail.com
+            </a>
+        </div>
+        <h3 style="margin-top:10px;" class="text-center">Formulaire de contact</h3>
+        <form method="post" class="row contact-form">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Mail"></label>
+                    <input asp-for="Mail" class="form-control" />
+                    <span asp-validation-for="Mail"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Company"></label>
+                    <input asp-for="Company" class="form-control" />
+                    <span asp-validation-for="Company"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="PhoneNbr"></label>
+                    <input asp-for="PhoneNbr" class="form-control" />
+                    <span asp-validation-for="PhoneNbr"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label asp-for="Body" class="col-5 col-form-label"></label>
+                    <textarea rows="4" asp-for="Body" class="form-control form-control-sm"></textarea>
+                    <span asp-validation-for="Body"></span>
+                </div>
+            </div>
+            <p class="actions mx-auto">
+                <button class="btn btn-primary">Envoyer</button>
+            </p>
+        </form>
+        <div style="margin-top:110px;">
+            <iframe
+                src="https://www.google.com/maps/"
+                width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0"></iframe>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@page
+@model Site.Pages.Order.CommandeProduitViewModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin-top:120px;">@Model.Product.Name</h1>
+<div>
+    @if (Model.Product.Image != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Product.Image);
+        var image = String.Format("data:image/png;base64,{0}", base64);
+        <img src="@image" alt="" class="responsive-img" style="width:40%; text-align: left;">
+    }
+    else
+    {
+        <img src="~/images/no-image-found.jpg" class="responsive-img" style="width:40%; text-align: left;">
+    }
+    <span style="width:60%; text-align:right; float: right;font-size: 20px; white-space: pre-line;">
+        Description :
+        @Model.Product.Description
+
+        Prix : @Model.Product.Price €
+    </span>
+</div>
+<h6 style="text-align: center; font-size: 15px; color: red;">Attention ! Certaines caractéristiques du produit on put
+    être modifié.</h6>
+<h6 style="text-align: center; font-size: 15px; color: red;">Si le prix ou le nom du produit a changé, se référer au
+    prix et au nom sur l'historique de commande (sur la page précédente).</h6>
+<div>
+    <a class="btn btn-primary" href='javascript:history.go(-1)' style="margin-top: 15px;">Retour</a>
+</div>

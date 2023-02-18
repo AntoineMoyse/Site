@@ -1,0 +1,31 @@
+@page
+@model Site.Pages_Categorie.DetailsModel
+
+@{
+    ViewData["Title"] = "Détails";
+}
+
+<h1 style="margin-top:110px;">Détails</h1>
+
+<div>
+    <h4>Categorie</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Category.Id">Editer</a> |
+    <a asp-page="./Index">Retour à la liste</a>
+</div>

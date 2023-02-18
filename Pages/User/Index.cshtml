@@ -1,0 +1,65 @@
+﻿@page
+@model Site.Pages_User.IndexModel
+@{
+}
+
+<h2 style="margin-top:110px;">Index</h2>
+
+
+@using (Html.BeginForm())
+{
+    <p>
+        <label asp-for="SelectOption">Option de recherche : </label>
+        <select id="SelectOption" name="SelectOption">
+            <option value="Id Client">Id Client</option>
+            <option value="Nom">Nom</option>
+            <option value="Email">Email</option>
+            <option value="Numéro téléphone">Numéro téléphone</option>
+        </select>
+
+        @Html.Label("Search Text")
+        @Html.TextBox("SearchText")
+        <input asp-page-handler="Search" type="submit" value="Search" class="btn btn-primary" />
+    </p>
+}
+
+@if (Model.clientlist == null)
+{
+    <h1>Aucun résultat... pour le moment</h1>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro client</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Numéro de téléphone</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var list in Model.clientlist)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => list.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => list.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => list.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => list.PhoneNumber)
+                    </td>
+                    <td>
+                        <a asp-page="UserDetails" asp-route-id="@list.Id">Détails</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

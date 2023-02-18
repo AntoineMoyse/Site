@@ -1,0 +1,41 @@
+﻿@page
+@model LoginWith2faModel
+@{
+    ViewData["Title"] = "Double authentification";
+}
+
+<h1 style="margin-top:110px;">@ViewData["Title"]</h1>
+<hr />
+<p>La connexion est protégée par une double authentification. Saisissez le code présent sur votre application de double authentification pour vous connecter.</p>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+            <input asp-for="RememberMe" type="hidden" />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.TwoFactorCode"></label>
+                <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" />
+                <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="Input.RememberMachine">
+                        <input asp-for="Input.RememberMachine" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMachine)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Se Connecter</button>
+            </div>
+        </form>
+    </div>
+</div>
+<p>
+    Vous n'avez pas accès à votre code de double authentification ? Vous pouvez
+    <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">vous connecter avec un code de récupération</a>.
+</p>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
